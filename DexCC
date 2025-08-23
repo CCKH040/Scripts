@@ -1,10 +1,10 @@
 --[[
-	DexCCH
+	DexCC
 	Version 1.0
 	
 	Developed by CCKH040 with help from Chillz
 	
-	DexCCH is a version of Dex++ which is a revival of Moon's Dex.
+	DexCC is a version of Dex++ which is a revival of Moon's Dex.
 ]]
 
 local selection
