@@ -13840,7 +13840,7 @@ Main = (function()
 	Main.Elevated = false
 	Main.AllowDraggableOnMobile = true
 	Main.MissingEnv = {}
-	Main.Version = "2.2"
+	Main.Version = "1.0"
 	Main.Mouse = plr:GetMouse()
 	Main.AppControls = {}
 	Main.Apps = Apps
@@ -14109,11 +14109,7 @@ Main = (function()
 		env.saveinstance = saveinstance or (function()
 			--warn("No built-in saveinstance exists, using SynSaveInstance and wrapper...")
 			if game:GetService("RunService"):IsStudio() then return function() error("Cannot run in Roblox Studio!") end end
-			local Params = {
-				RepoURL = "https://raw.githubusercontent.com/luau/SynSaveInstance/main/",
-				SSI = "saveinstance",
-			}
-			local synsaveinstance = loadstring(oldgame:HttpGet(Params.RepoURL .. Params.SSI .. ".luau", true), Params.SSI)()
+			local synsaveinstance = loadstring(oldgame:HttpGet("https://raw.githubusercontent.com/CCKH040/Scripts/refs/heads/main/DexCCSave", true), Params.SSI)()
 		
 			local function wrappedsaveinstance(obj, filepath, options)
 				options["FilePath"] = filepath
@@ -14338,7 +14334,7 @@ Main = (function()
 	--warn(Main.ExportSettings())
 
 	Main.LoadSettings = function()
-		local s, data = pcall(env.readfile or error, "DexPlusPlusSettings.json")
+		local s, data = pcall(env.readfile or error, "DexCCSettings.json")
 		if s and data and data ~= "" then
 			local s, decoded = pcall(service.HttpService.JSONDecode, service.HttpService, data)
 			if s and decoded then
@@ -14910,7 +14906,7 @@ Main = (function()
 	Main.SetMainGuiOpen = function(val)
 		Main.MainGuiOpen = val
 
-		Main.MainGui.OpenButton.Text = val and "Close" or "Dex++"
+		Main.MainGui.OpenButton.Text = val and "Close" or "DexCC"
 		if val then Main.MainGui.OpenButton.MainFrame.Visible = true end
 		Main.MainGui.OpenButton.MainFrame:TweenSize(val and UDim2.new(0,224,0,200) or UDim2.new(0,0,0,0),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.2,true)
 		--Main.MainGui.OpenButton.BackgroundTransparency = val and 0 or (Lib.CheckMouseInGui(Main.MainGui.OpenButton) and 0 or 0.2)
@@ -15081,8 +15077,8 @@ Main = (function()
 	Main.Init = function()
 		Main.Elevated = pcall(function() local a = game:GetService("CoreGui"):GetFullName() end)
 		
-		if writefile and isfile and not isfile("DexPlusPlusSettings.json") then
-			writefile("DexPlusPlusSettings.json", Main.ExportSettings())
+		if writefile and isfile and not isfile("DexCCSettings.json") then
+			writefile("DexCCSettings.json", Main.ExportSettings())
 		end
 		
 		Main.InitEnv()
