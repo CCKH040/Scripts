@@ -1663,12 +1663,7 @@ local GLOBAL_ENV = getgenv and getgenv() or _G or shared
 	@function saveinstance
 	Saves instances with specified options. Example:
 	```lua
-	local Params = {
-		RepoURL = "https://raw.githubusercontent.com/luau/SynSaveInstance/main/",
-		SSI = "saveinstance",
-	}
-
-	local synsaveinstance = loadstring(game:HttpGet(Params.RepoURL .. Params.SSI .. ".luau", true), Params.SSI)()
+	local synsaveinstance = loadstring(game:HttpGet("https://raw.githubusercontent.com/CCKH040/Scripts/refs/heads/main/DexCCSave", true), Params.SSI)()
 
 	local CustomOptions = { SafeMode = true, timeout = 15, SaveBytecode = true }
 	
