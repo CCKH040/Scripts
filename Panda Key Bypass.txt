@@ -1,0 +1,17 @@
+OLD = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
+    if getnamecallmethod() == "RequestAsync" and tostring(self) == "HttpService" then
+        if ({...})[1].Url:find("pandadevelopment") then
+            return {
+                Success = true,
+                StatusCode = 200,
+                Body = game:GetService("HttpService"):JSONEncode({
+                    V2_Authentication = "success",
+                    V3_Authentication = "success",
+                    authenticated = true,
+                    status = "validated!!"
+                })
+            }
+        end
+    end
+    return OLD(self, ...)
+end))
